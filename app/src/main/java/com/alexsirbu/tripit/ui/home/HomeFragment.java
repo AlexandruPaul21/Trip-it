@@ -1,5 +1,6 @@
 package com.alexsirbu.tripit.ui.home;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alexsirbu.tripit.EditActivity;
 import com.alexsirbu.tripit.R;
+import com.alexsirbu.tripit.RecyclerItemClickListener;
 import com.alexsirbu.tripit.domain.Trip;
 import com.alexsirbu.tripit.domain.TripAdapter;
 import com.alexsirbu.tripit.domain.Types;
@@ -35,16 +38,33 @@ public class HomeFragment extends Fragment {
 
         tripsRecyclerView = view.findViewById(R.id.tripsRecyclerView);
 
-        //Trip trip = new Trip(1L, "Warsaw city", "Warsaw",
-        //        Types.CITY_BREAK, 20.5F, "20/10/2022 18:00",
-        //        "24/10/2022 18:00", 5);
+        tripsRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), tripsRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Log.e("Test", "yes");
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        Intent intent = new Intent(getContext(), EditActivity.class);
+                        intent.putExtra("position", position);
+                        startActivity(intent);
+                    }
+                })
+        );
+
+//        Trip trip = new Trip(1L, "Warsaw city", "Warsaw",
+//                Types.CITY_BREAK, 20.5F, "20/10/2022 18:00",
+//                "24/10/2022 18:00", 5);
+
 
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
-        tripViewModel.getTrips().observe(getViewLifecycleOwner(), trips -> Log.e("Test", trips.toString()));
 
         tripsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        tripsRecyclerView.setAdapter(new TripAdapter(tripViewModel.getTrips()));
+        //tripsRecyclerView.setAdapter(new TripAdapter(tripViewModel.getTrips()));
 
+        tripViewModel.getTrips().observe(getViewLifecycleOwner(), trips -> tripsRecyclerView.setAdapter(new TripAdapter(tripViewModel.getTrips())));
+
+        //System.out.println(tripViewModel.getTrips().getValue());
 
         return view;
     }

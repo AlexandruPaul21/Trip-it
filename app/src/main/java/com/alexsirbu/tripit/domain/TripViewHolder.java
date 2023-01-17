@@ -1,5 +1,6 @@
 package com.alexsirbu.tripit.domain;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alexsirbu.tripit.EditActivity;
 import com.alexsirbu.tripit.R;
 
 public class TripViewHolder extends RecyclerView.ViewHolder {
@@ -23,6 +25,7 @@ public class TripViewHolder extends RecyclerView.ViewHolder {
         textViewTitle = itemView.findViewById(R.id.textViewTitle);
         textViewDestination = itemView.findViewById(R.id.textViewDestination);
         textViewPrice = itemView.findViewById(R.id.textViewPrice);
+        itemView.setClickable(true);
     }
 
     public ImageView getImageViewPhoto() {

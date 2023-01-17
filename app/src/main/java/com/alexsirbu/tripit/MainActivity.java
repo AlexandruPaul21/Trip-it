@@ -1,5 +1,6 @@
 package com.alexsirbu.tripit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -50,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
     private void handleFabButton() {
         fab = findViewById(R.id.fab);
 
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        fab.setOnClickListener(view -> {
+                    Intent intent = new Intent(MainActivity.this, CreateActivity.class);
+                    startActivity(intent);
+                });
     }
 
     @Override
