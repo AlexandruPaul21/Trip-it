@@ -22,4 +22,8 @@
     <style name="Theme.TripIt.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.TripIt.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Button.Red" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/holo_red_light</item>
+    </style>
 </resources>

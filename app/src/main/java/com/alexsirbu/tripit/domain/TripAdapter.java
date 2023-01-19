@@ -1,6 +1,6 @@
 package com.alexsirbu.tripit.domain;
 
-import android.content.Intent;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Database;
 
-import com.alexsirbu.tripit.EditActivity;
 import com.alexsirbu.tripit.R;
+import com.alexsirbu.tripit.models.TripViewModel;
+import com.alexsirbu.tripit.utils.RandomPhotoGenerator;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,10 +23,14 @@ import java.util.Objects;
 
 public class TripAdapter extends RecyclerView.Adapter<TripViewHolder>{
 
+    private final TripViewModel tripViewModel;
     private final LiveData<List<Trip>> trips;
+    private final Context context;
 
-    public TripAdapter(LiveData<List<Trip>> trips) {
+    public TripAdapter(ViewModelStoreOwner owner, Context context, LiveData<List<Trip>> trips) {
+        this.context = context;
         this.trips = trips;
+        tripViewModel = new ViewModelProvider(owner).get(TripViewModel.class);
     }
 
     @NonNull
@@ -35,11 +43,20 @@ public class TripAdapter extends RecyclerView.Adapter<TripViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull TripViewHolder holder, int position) {
         Trip trip = Objects.requireNonNull(trips.getValue()).get(position);
+        holder.setId(trip.getId());
         holder.getTextViewTitle().setText(trip.getName());
         holder.getTextViewDestination().setText(trip.getDestination());
         holder.getTextViewPrice().setText(String.format("%s",trip.getPrice()));
-        Picasso.get().load("https://www.investmentmonitor.ai/wp-content/uploads/sites/7/2021/10/Warsaw-skyline-2-934x657-1.jpg")
-                .placeholder(R.drawable.contact_us)
+        holder.getFavouriteButton().setOnClickListener(view -> {
+            trip.setFavourite(!trip.getFavourite());
+            if (trip.getFavourite()) {
+                holder.getFavouriteButton().setImageResource(R.drawable.ic_favourite_red_24);
+            } else {
+                holder.getFavouriteButton().setImageResource(R.drawable.ic_favourite_black_24);
+            }
+        });
+        Picasso.get().load(RandomPhotoGenerator.generate())
+                .placeholder(R.drawable.gallery)
                 .into(holder.getImageViewPhoto());
     }
 

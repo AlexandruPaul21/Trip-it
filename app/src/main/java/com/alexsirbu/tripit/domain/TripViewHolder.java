@@ -1,31 +1,46 @@
 package com.alexsirbu.tripit.domain;
 
-import android.content.Intent;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alexsirbu.tripit.EditActivity;
 import com.alexsirbu.tripit.R;
 
 public class TripViewHolder extends RecyclerView.ViewHolder {
 
+    private Long id;
     private final ImageView imageViewPhoto;
     private final TextView textViewTitle;
     private final TextView textViewDestination;
     private final TextView textViewPrice;
+    private final ImageButton favouriteButton;
 
     public TripViewHolder(@NonNull View itemView) {
         super(itemView);
 
         imageViewPhoto = itemView.findViewById(R.id.imageViewPhoto);
-        textViewTitle = itemView.findViewById(R.id.textViewTitle);
+        textViewTitle = itemView.findViewById(R.id.editTextTitle);
         textViewDestination = itemView.findViewById(R.id.textViewDestination);
         textViewPrice = itemView.findViewById(R.id.textViewPrice);
+        favouriteButton = itemView.findViewById(R.id.imageButtonFavourite);
         itemView.setClickable(true);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ImageButton getFavouriteButton() {
+        return favouriteButton;
     }
 
     public ImageView getImageViewPhoto() {

@@ -21,11 +21,12 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewTitle"
+                android:id="@+id/editTextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewPhoto"
                 app:layout_constraintHorizontal_bias="0.2"
@@ -50,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:textSize="16sp"
+                android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewPhoto"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -69,6 +71,21 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
                 tools:text="TextView" />
+
+            <ImageButton
+                android:id="@+id/imageButtonFavourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@android:color/white"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toStartOf="@+id/editTextTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_favourite_black_24" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

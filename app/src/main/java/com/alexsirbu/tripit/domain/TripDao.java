@@ -27,4 +27,7 @@ public interface TripDao {
 
     @Query("SELECT * FROM trips WHERE id = :id")
     Trip findById(Long id);
+
+    @Query("SELECT * FROM trips")
+    List<Trip> getLowestFreeId();
 }

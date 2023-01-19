@@ -10,6 +10,7 @@ import com.alexsirbu.tripit.domain.Trip;
 import com.alexsirbu.tripit.repository.TripDbRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TripViewModel extends AndroidViewModel {
     private TripDbRepository tripRepository;
@@ -19,6 +20,18 @@ public class TripViewModel extends AndroidViewModel {
         super(application);
         tripRepository = new TripDbRepository(application);
         trips =  tripRepository.findAll();
+    }
+
+    public Long getPos(int pos) {
+        return Objects.requireNonNull(trips.getValue()).get(pos).getId();
+    }
+
+    public Long getLowestFreeId() {
+        return tripRepository.getNewId();
+    }
+
+    public Trip get(Long id) {
+        return tripRepository.findOne(id);
     }
 
     public void insert(Trip trip) {

@@ -43,6 +43,10 @@ public class Trip extends GenericEntity<Long> {
     @NotNull
     private Integer rating;
 
+    @ColumnInfo(name = "favourite")
+    @NotNull
+    private Boolean favourite;
+
     public Trip(@NotNull Long id, @NotNull String name, @NotNull String destination, @NotNull Types type, @NotNull Float price, @NotNull String startDateTime, @NotNull String endDateTime, @NotNull Integer rating) {
         this.id = id;
         this.name = name;
@@ -52,6 +56,28 @@ public class Trip extends GenericEntity<Long> {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.rating = rating;
+        this.favourite = false;
+    }
+
+    public Trip() {
+        this.id = 0L;
+        this.name = "";
+        this.destination = "";
+        this.type = Types.SEA_SIDE;
+        this.price = 0F;
+        this.startDateTime = "";
+        this.endDateTime = "";
+        this.rating = 0;
+        this.favourite = false;
+    }
+
+    @NotNull
+    public Boolean getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(@NotNull Boolean favourite) {
+        this.favourite = favourite;
     }
 
     @Override

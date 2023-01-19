@@ -8,7 +8,7 @@ import com.alexsirbu.tripit.domain.Trip;
 import java.util.List;
 
 public interface Repository<ID, E extends GenericEntity<ID>> {
-    //E findOne(ID id);
+    E findOne(ID id);
     LiveData<List<E>> findAll();
     void save(E entity);
     void delete(Trip trip);

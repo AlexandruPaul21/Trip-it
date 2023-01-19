@@ -16,4 +16,18 @@
     <string name="contact">Contact</string>
     <string name="share">Share</string>
     <string name="trip_image">Trip image</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="title">Title</string>
+    <string name="trip_type">Trip type</string>
+    <string name="location">Location</string>
+    <string name="price">Price</string>
+    <string name="start_date">Start date</string>
+    <string name="city_break">City Break</string>
+    <string name="sea_side">Sea side</string>
+    <string name="mountains">Mountains</string>
+    <string name="end_date">End date</string>
+    <string name="rating">Rating</string>
+    <string name="favourite">Favourite</string>
 </resources>

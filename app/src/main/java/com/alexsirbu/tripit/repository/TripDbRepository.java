@@ -7,8 +7,10 @@ import androidx.lifecycle.LiveData;
 import com.alexsirbu.tripit.domain.Trip;
 import com.alexsirbu.tripit.domain.TripDao;
 import com.alexsirbu.tripit.domain.TripRoomDatabase;
+import com.alexsirbu.tripit.domain.Types;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TripDbRepository implements Repository<Long, Trip> {
 
@@ -21,12 +23,13 @@ public class TripDbRepository implements Repository<Long, Trip> {
         trips = tripDao.getTrips();
     }
 
-//    @Override
-//    public Trip findOne(Long aLong) {
-//        TripRoomDatabase.databaseThread.execute(() -> {
-//            tripDao.findById(aLong);
-//        });
-//    }
+    @Override
+    public Trip findOne(Long aLong) {
+        return tripDao.findById(aLong);
+        //return new Trip(2L, "Emily", "Paris", Types.CITY_BREAK, 20F, "20/10/2020", "30/10/2020", 5);
+    }
+
+
 
     @Override
     public LiveData<List<Trip>> findAll() {
@@ -35,22 +38,20 @@ public class TripDbRepository implements Repository<Long, Trip> {
 
     @Override
     public void save(Trip entity) {
-        TripRoomDatabase.databaseThread.execute(() -> {
-            tripDao.insert(entity);
-        });
+        tripDao.insert(entity);
     }
 
     @Override
     public void delete(Trip trip) {
-        TripRoomDatabase.databaseThread.execute(() -> {
-            tripDao.delete(trip);
-        });
+        tripDao.delete(trip);
     }
 
     @Override
     public void update(Trip trip) {
-        TripRoomDatabase.databaseThread.execute(() -> {
-            tripDao.update(trip);
-        });
+        tripDao.update(trip);
+    }
+
+    public Long getNewId() {
+        return (long)tripDao.getLowestFreeId().size()+1;
     }
 }
