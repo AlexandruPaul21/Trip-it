@@ -30,4 +30,9 @@
     <string name="end_date">End date</string>
     <string name="rating">Rating</string>
     <string name="favourite">Favourite</string>
+    <string name="period">Period</string>
+    <string name="latitude_of_the_location">Latitude of the location</string>
+    <string name="longitude_of_the_location">Longitude of the location</string>
+    <string name="weather">Weather</string>
+    <string name="show">Show</string>
 </resources>

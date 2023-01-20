@@ -31,7 +31,6 @@ import java.util.Calendar;
 import java.util.Objects;
 
 public class EditActivity extends AppCompatActivity {
-
     private TripViewModel tripViewModel;
     private Trip trip;
 
@@ -52,7 +51,6 @@ public class EditActivity extends AppCompatActivity {
     private Button cancelBtn;
     private Button saveBtn;
 
-    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +91,6 @@ public class EditActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        recyclerView = findViewById(R.id.tripsRecyclerView);
-
         editTextTitle = findViewById(R.id.editTextTitleE);
         editTextLocation = findViewById(R.id.editTextLocationE);
 

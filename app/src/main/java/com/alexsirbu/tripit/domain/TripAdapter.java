@@ -1,6 +1,7 @@
 package com.alexsirbu.tripit.domain;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Database;
 
 import com.alexsirbu.tripit.R;
+import com.alexsirbu.tripit.ReadOnlyActivity;
 import com.alexsirbu.tripit.models.TripViewModel;
 import com.alexsirbu.tripit.utils.RandomPhotoGenerator;
 import com.squareup.picasso.Picasso;
@@ -54,6 +56,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripViewHolder>{
             } else {
                 holder.getFavouriteButton().setImageResource(R.drawable.ic_favourite_black_24);
             }
+        });
+        holder.getReadOnlyButton().setOnClickListener((View.OnClickListener)view -> {
+            Intent intent = new Intent(view.getContext(), ReadOnlyActivity.class);
+            intent.putExtra("position", holder.getId());
+            view.getContext().startActivity(intent);
         });
         Picasso.get().load(RandomPhotoGenerator.generate())
                 .placeholder(R.drawable.gallery)
