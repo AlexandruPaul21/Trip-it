@@ -48,7 +48,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripViewHolder>{
         holder.setId(trip.getId());
         holder.getTextViewTitle().setText(trip.getName());
         holder.getTextViewDestination().setText(trip.getDestination());
-        holder.getTextViewPrice().setText(String.format("%s",trip.getPrice()));
+        holder.getTextViewPrice().setText(String.format("%s $",trip.getPrice()));
         holder.getFavouriteButton().setOnClickListener(view -> {
             trip.setFavourite(!trip.getFavourite());
             if (trip.getFavourite()) {

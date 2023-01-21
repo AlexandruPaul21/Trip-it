@@ -32,6 +32,12 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        setupRecyclerView(view);
+
+        return view;
+    }
+
+    private void setupRecyclerView(View view) {
         tripsRecyclerView = view.findViewById(R.id.tripsRecyclerView);
 
         tripsRecyclerView.addOnItemTouchListener(
@@ -47,8 +53,6 @@ public class HomeFragment extends Fragment {
                     }
                 })
         );
-
-        return view;
     }
 
     @Override

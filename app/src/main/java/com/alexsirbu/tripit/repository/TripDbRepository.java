@@ -26,7 +26,6 @@ public class TripDbRepository implements Repository<Long, Trip> {
     @Override
     public Trip findOne(Long aLong) {
         return tripDao.findById(aLong);
-        //return new Trip(2L, "Emily", "Paris", Types.CITY_BREAK, 20F, "20/10/2020", "30/10/2020", 5);
     }
 
 

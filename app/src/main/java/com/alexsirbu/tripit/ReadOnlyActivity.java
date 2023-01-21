@@ -72,7 +72,7 @@ public class ReadOnlyActivity extends AppCompatActivity {
     private void setupButton() {
         buttonWeather.setOnClickListener(view -> {
             TripRoomDatabase.databaseThread.execute(() -> {
-                getWeather(20F,20F);
+                getWeather(20F, 20F);
             });
         });
     }
@@ -87,8 +87,8 @@ public class ReadOnlyActivity extends AppCompatActivity {
         } else {
             editTextType.setText("Sea side");
         }
-        editTextPrice.setText(String.format("%s",trip.getPrice()));
-        editTextPeriod.setText(String.format("%s -> %s",trip.getStartDateTime(), trip.getEndDateTime()));
+        editTextPrice.setText(String.format("%s", trip.getPrice()));
+        editTextPeriod.setText(String.format("%s -> %s", trip.getStartDateTime(), trip.getEndDateTime()));
         editTextRating.setText(String.format("%s stars", trip.getRating()));
     }
 

@@ -123,9 +123,11 @@ public class CreateActivity extends AppCompatActivity {
 
             RadioButton button = findViewById(type);
 
-            Types tripType;
+            Types tripType = null;
 
-            if (button.getText().equals("Sea side")) {
+            if (button == null) {
+                valid = false;
+            } else if (button.getText().equals("Sea side")) {
                 tripType = Types.SEA_SIDE;
             } else if (button.getText().equals("Mountains")) {
                 tripType = Types.MOUNTAINS;
@@ -133,8 +135,9 @@ public class CreateActivity extends AppCompatActivity {
                 tripType = Types.CITY_BREAK;
             }
             if (valid) {
+                Types finalTripType = tripType;
                 TripRoomDatabase.databaseThread.execute(() -> {
-                    Trip trip = new Trip(tripViewModel.getLowestFreeId() + 1, title, location, tripType, (float)price, startDate, endDate, (int) rating);
+                    Trip trip = new Trip(tripViewModel.getLowestFreeId() + 1, title, location, finalTripType, (float)price, startDate, endDate, (int) rating);
                     tripViewModel.insert(trip);
                 });
                 this.finish();
